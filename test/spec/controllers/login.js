@@ -22,9 +22,6 @@ describe('Controller: LoginCtrl', function () {
     });
   }));
 
-  it('should attach a submit method to the scope', function () {
-    expect(scope.submit).toBeDefined();
-  });
   it('shows the modal if the token is missing', function() {
     spyOn(scope.modal, 'show');
     watchListener(null);

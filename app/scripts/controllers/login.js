@@ -1,31 +1,32 @@
 'use strict';
 
 angular.module('citizendeskFrontendApp')
-  .controller('LoginCtrl', function ($scope, $modal, auth, $location, session) {
+  .controller('LoginCtrl', function ($scope, $modal, auth, $location, session, $window, $http) {
     $scope.modal = $modal({
       template: 'views/modals/login.html',
-      show: false,
-      scope: $scope
+      show: false
     });
-    $scope.error = {};
-    $scope.submit = function() {
-      auth.login($scope.username, $scope.password)
-        .catch(function() {
-          $scope.error.service = true;
-        });
-    };
     $scope.$watch(function() {
       return session.token;
     }, function(token) {
       $scope.identity = session.identity;
-      $scope.username = session.identity ? session.identity.UserName : null;
+      $scope.username = session.identity ? session.identity.username : null;
       $scope.password = null;
       if (!token) {
         $scope.modal.show();
-      } else {
-        if ($scope.$isShown) {
-          $scope.modal.hide();
-        }
-      }      
+      }
     });
+    $scope.logout = function() {
+
+      function clear() {
+        session.clear();
+      }
+
+      var sessionHref = session.getSessionHref();
+      if (sessionHref) {
+        $http['delete'](sessionHref).then(clear, clear);
+      } else {
+        clear();
+      }
+    };
   });
