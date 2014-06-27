@@ -8,7 +8,8 @@ angular
     'eveApi',
     'mgcrea.ngStrap.helpers.dimensions',
     'mgcrea.ngStrap.helpers.debounce',
-    'mgcrea.ngStrap.scrollspy'
+    'mgcrea.ngStrap.scrollspy',
+    'mgcrea.ngStrap.modal',
   ])
   .constant('config', {
     server: { url: 'http://cd2.sourcefabric.net/citizendesk-interface/' }
@@ -82,6 +83,10 @@ angular
       .when('/web-queue', {
         templateUrl: 'views/web-queue.html',
         controller: 'WebQueueCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
       // static pages, without controllers
       .when('/error-no-monitors', {

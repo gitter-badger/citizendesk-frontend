@@ -22,6 +22,7 @@ module.exports = function(config) {
       'app/bower_components/angular-strap/dist/modules/debounce.js',
       'app/bower_components/angular-strap/dist/modules/dimensions.js',
       'app/bower_components/angular-strap/dist/modules/scrollspy.js',
+      'app/bower_components/angular-strap/dist/modules/modal.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/globals.js',
