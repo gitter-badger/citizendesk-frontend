@@ -84,10 +84,6 @@ angular
         templateUrl: 'views/web-queue.html',
         controller: 'WebQueueCtrl'
       })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
       // static pages, without controllers
       .when('/error-no-monitors', {
         templateUrl: 'views/error-no-monitors.html'

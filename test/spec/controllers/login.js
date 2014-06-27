@@ -6,17 +6,28 @@ describe('Controller: LoginCtrl', function () {
   beforeEach(module('citizendeskFrontendApp'));
 
   var LoginCtrl,
-    scope;
+      scope,
+      watchExpression,
+      watchListener;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
+    spyOn(scope, '$watch').andCallFake(function(expression, listener) {
+      watchExpression = expression;
+      watchListener = listener;
+    });
     LoginCtrl = $controller('LoginCtrl', {
       $scope: scope
     });
   }));
 
-  it('should attach a modal to the scope', function () {
-    expect(scope.modal).toBeDefined();
+  it('should attach a submit method to the scope', function () {
+    expect(scope.submit).toBeDefined();
+  });
+  it('shows the modal if the token is missing', function() {
+    spyOn(scope.modal, 'show');
+    watchListener(null);
+    expect(scope.modal.show).toHaveBeenCalled();
   });
 });
